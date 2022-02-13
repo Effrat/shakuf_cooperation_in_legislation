@@ -1,18 +1,25 @@
-#TODO: break into functions
-
 import pandas as pd
 from datetime import date
 
 today = date.today()
-factions_by_date = pd.read_csv('..\..\data\\expanded\\factions_by_date.csv', index_col='Date')
-earliest_date = factions_by_date.index.min()
-
-date = pd.date_range(earliest_date, today, closed='left')
-date = pd.DataFrame(index=date)
-date.index.name = 'Date'
-# add knesset number + government number for each day
 
 
-date.to_csv('..\..\data\\to_powerbi\date.csv', index_label='Date')
+def date_create():
+    knesset_by_date = pd.read_excel('../data/expanded/knesset_by_date.xlsx')
+    # knesset_by_date
+    earliest_date = knesset_by_date['Date'].min()
+    date = pd.date_range(earliest_date, today, closed='left')
+    date = pd.DataFrame(index=date)
+    date.index.name = 'Date'
+    date['year'] = date.index.year
 
-date
+    date = date.join(knesset_by_date.set_index('Date'), how='left')
+    date.reset_index(inplace=True)
+
+    date.to_excel(
+        '../data/model/dimensions/date.xlsx',
+        sheet_name='date',
+        index=False
+        )
+
+    date

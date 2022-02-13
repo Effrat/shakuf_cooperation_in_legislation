@@ -12,6 +12,7 @@ def person_transform():
 
     person = KNS_MkSiteCode.set_index('PersonID').join(KNS_Person.set_index('PersonID'), how='outer').reset_index()
     person['SiteId'] = person['SiteId'].astype('Int64')
+    person['FullName'] = person['FirstName'] + ' ' + person['LastName']
     person.to_excel(
         '..\data\\model\\dimensions\\person.xlsx',
         sheet_name='person',
