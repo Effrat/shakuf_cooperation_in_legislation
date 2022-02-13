@@ -8,14 +8,14 @@ odata_tables = [
     'KNS_PersonToPosition',
     'KNS_KnessetDates',
     'KNS_Status',
-    # 'KNS_Bill',
+    'KNS_Bill',
     'KNS_BillInitiator',
     'KNS_BillHistoryInitiator',
     'KNS_PlmSessionItem',
     'KNS_PlenumSession',
-    # 'KNS_ItemType',
+    'KNS_ItemType',
 ]
 
-
-for i in range(len(odata_tables)):
-    retrieve_table(odata_tables[i])
+def retrieve_raw_data():
+    for i in range(len(odata_tables)):
+        retrieve_table(odata_tables[i])

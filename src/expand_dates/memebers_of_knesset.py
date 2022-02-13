@@ -1,5 +1,3 @@
-#TODO: break into functions
-
 import pandas as pd
 from datetime import date
 
@@ -12,7 +10,8 @@ members_of_knesset = members_of_knesset[['PersonID', 'StartDate', 'FinishDate']]
 members_of_knesset['FinishDate'].fillna(today, inplace=True)
 members_of_knesset['StartDate'] = pd.to_datetime(members_of_knesset['StartDate'])
 members_of_knesset['FinishDate'] = pd.to_datetime(members_of_knesset['FinishDate'])
-# members_of_knesset
+members_of_knesset.sort_values('FinishDate', inplace=True)
+members_of_knesset
 
 members_of_knesset_by_date = pd.DataFrame()
 
@@ -29,5 +28,8 @@ for row in (members_of_knesset.index):
     print(expanded_dates_batch)
     members_of_knesset_by_date = pd.concat([members_of_knesset_by_date, expanded_dates_batch])
 
-members_of_knesset_by_date.to_csv(f'..\..\data\\expanded\members_of_knesset_by_date.csv', index_label='Date')
+members_of_knesset_by_date.to_csv(
+    '..\..\data\\expanded\members_of_knesset_by_date.csv',
+    index_label='Date'
+    )
 

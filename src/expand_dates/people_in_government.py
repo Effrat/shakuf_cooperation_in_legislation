@@ -1,5 +1,3 @@
-#TODO: break into functions
-
 import pandas as pd
 from datetime import date
 
@@ -42,4 +40,5 @@ people_in_government_by_date.to_excel(
     index_label='Date'
     )
 
-people_in_government_by_date
+# people_in_government_by_date[(people_in_government_by_date['PersonID'] == 427) & (people_in_government_by_date['PositionID'] == 39)]
+people_in_government_by_date[(people_in_government_by_date['PersonID'] == 427) & (people_in_government_by_date['PositionID'].isin([48, 54]))]

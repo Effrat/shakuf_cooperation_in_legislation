@@ -11,7 +11,7 @@ bill = bill_initiators_side.join(bill_to_date_to_mk, how='inner')
 bill
 
 KNS_Bill = pd.read_excel('..\..\data\\raw\\KNS_Bill.xlsx', index_col='BillID')
-KNS_Bill = KNS_Bill[['Name']]
+KNS_Bill = KNS_Bill[['Name', 'StatusID']]
 
 bill = bill.join(KNS_Bill, how='inner')
 bill.to_excel('..\..\data\\to_powerbi\\bill.xlsx', header=True)

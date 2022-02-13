@@ -1,17 +1,16 @@
-#TODO: break into functions
-
 import pandas as pd
 from datetime import date
 
 today = date.today()
 
-KNS_Faction = pd.read_excel('..\..\data\\raw\KNS_Faction.xlsx')
-factions = KNS_Faction[KNS_Faction.index != 911]
-factions
-factions['FinishDate'].fillna(today, inplace=True)
+KNS_Faction = pd.read_excel('..\..\data\\raw\KNS_Faction.xlsx', index_col=0)
+factions = KNS_Faction[(KNS_Faction['FactionID'] != 911) & (KNS_Faction['FactionID'] != 356)]
+factions.info()
 factions['StartDate'] = pd.to_datetime(factions['StartDate'])
 factions['FinishDate'] = pd.to_datetime(factions['FinishDate'])
-factions.sort_values('FinishDate', inplace=True, ascending=False)
+factions['FinishDate'].fillna(today, inplace=True)
+# factions[factions['IsCurrent'] == True]['FinishDate'].fillna(today, inplace=True)
+factions.sort_values('StartDate', inplace=True, ascending=False)
 factions
 
 factions_by_date = pd.DataFrame()
