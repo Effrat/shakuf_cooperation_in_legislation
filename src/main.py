@@ -6,6 +6,7 @@ from transform.faction import faction_transform
 from expand_dates.factions import factions_expand
 
 def update_data():
+    # ---- create data folders structure ----
     # date_create()
     # retrieve_raw_data()
     # knesset_transform()

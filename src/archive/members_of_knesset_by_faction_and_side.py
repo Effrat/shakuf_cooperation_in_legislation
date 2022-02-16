@@ -1,4 +1,5 @@
-#TODO: break into functions
+#TODO: break into two parts?
+
 
 import pandas as pd
 

@@ -70,7 +70,7 @@ factions_in_coalition
 factions_side = factions_in_knesset.set_index(['Date', 'FactionID']).join(factions_in_coalition.set_index(['Date', 'FactionID']), how='left')
 factions_side = factions_side.reset_index().drop_duplicates(subset=['Date', 'FactionID'])
 factions_side['Side'].fillna('Opposition', inplace=True)
-factions_side.to_csv('..\..\data\\expanded\\factions_side.csv', index=False)
+factions_side.to_csv('..\..\data\\expanded\\factions_side_by_date.csv', index=False)
 factions_side
 
 # fig = px.line(daily_total_factions, title='Factions in/out of Coalition')

@@ -26,8 +26,8 @@ def factions_expand():
         expanded_dates_batch = pd.DataFrame(index=dates)
         expanded_dates_batch.columns.name = 'Date'
         expanded_dates_batch['FactionID'] = faction_id
-        expanded_dates_batch['Name'] = factions.loc[faction_id]['Name']
-        expanded_dates_batch['KnessetNum'] = factions.loc[faction_id]['KnessetNum']
+        # expanded_dates_batch['Name'] = factions.loc[faction_id]['Name']
+        # expanded_dates_batch['KnessetNum'] = factions.loc[faction_id]['KnessetNum']
         print(expanded_dates_batch)
         factions_by_date = pd.concat([factions_by_date, expanded_dates_batch])
 
