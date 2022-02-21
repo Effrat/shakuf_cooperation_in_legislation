@@ -1,7 +1,10 @@
 from utils.get_raw_data import retrieve_table
 
+# names of tables to retrieve
 odata_tables = [
-    'KNS_MkSiteCode',
+    'KNS_CommitteeSession',
+    'KNS_CmtSessionItem',
+    # 'KNS_MkSiteCode',
     # 'KNS_Faction',
     # 'KNS_Person',
     # 'KNS_Position',

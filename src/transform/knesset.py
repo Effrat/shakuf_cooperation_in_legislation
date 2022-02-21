@@ -1,9 +1,9 @@
 import pandas as pd
 from datetime import date
 
-def knesset_transform():
+def knesset():
     '''
-    This function transforms the knesset dataframe to a format that is easier to work with.
+    This function transforms the KNS_KnessetDates dataframe to a dimension for the FE data model.
     '''
     today = date.today()
 
@@ -13,6 +13,7 @@ def knesset_transform():
     knesset[['PlenumStart', 'PlenumFinish']] = knesset[['PlenumStart', 'PlenumFinish']].apply(pd.to_datetime)
     knesset = knesset.groupby('KnessetNum').agg({'Name': 'max', 'PlenumStart': 'min', 'PlenumFinish': 'max'})
     knesset.reset_index(inplace=True)
+    knesset.columns = ['knesset_num', 'name', 'start_date', 'end_date']
     knesset.to_excel(
         '../data/model/dimensions/knesset.xlsx',
         sheet_name='knesset',
