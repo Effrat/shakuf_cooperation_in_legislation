@@ -2,7 +2,6 @@ import pandas as pd
 
 def bill():
     """
-    Create bill table for the FE data model.
     """
     bill_to_side = pd.read_excel(
         '../data/transformed/bill_to_side.xlsx')
@@ -11,8 +10,10 @@ def bill():
     KNS_Bill = pd.read_excel(
         '../data/raw/KNS_Bill.xlsx',
         index_col=0)
-    KNS_Bill = KNS_Bill[['BillID', 'Name']]
-    KNS_Bill.rename(columns={'BillID': 'bill_id', 'Name': 'name'}, inplace=True)
+    KNS_Bill = KNS_Bill[['BillID', 'Name', 'StatusID']]
+    KNS_Bill.rename(columns={'BillID': 'bill_id', 'Name': 'name', 'StatusID': 'status_id'}, inplace=True)
+    KNS_Bill['passed_third'] = KNS_Bill['status_id'].apply(lambda x: True if x == 118 else False)
+    KNS_Bill.drop(columns=['status_id'], inplace=True)
     KNS_Bill
 
     bill = KNS_Bill.set_index(
