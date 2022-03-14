@@ -6,7 +6,8 @@ folders = [
     '\\data\\raw',
     '\\data\\transformed',
     '\\data\\model\\dimensions',
-    '\\data\\model\\facts'
+    '\\data\\model\\facts',
+    '\\data\\reports'
 ]
 
 # parent directory
