@@ -3,7 +3,6 @@ import pandas as pd
 
 def bill_to_side():
     """
-    Transform bill to side.
     """
     bill_initiators = pd.read_csv(
         '../data/model/facts/bill_initiators.csv',

@@ -21,8 +21,8 @@ from transform.all_bill_initiators_to_date import all_bill_initiators_to_date
 from transform.members_of_knesset_faction_and_side_by_date import members_of_knesset_faction_and_side_by_date
 from transform.bill_initiators import bill_initiators
 from transform.bill_to_side import bill_to_side
-# from transform.bill import bill
-# from transform.bill_test import bill_test
+from transform.bill import bill
+
 
 def update_data():
     """
@@ -50,26 +50,26 @@ def update_data():
     # members_of_knesset_faction_by_date()
     # faction_side_by_date()
 
-    # ----- step 3 -----
+    # # ----- step 3 -----
     # faction_side_by_date_test #TODO: create unit test
     # all_bill_initiators_to_date()
     # members_of_knesset_faction_and_side_by_date()
 
-    # ----- step 4 -----
+    # # ----- step 4 -----
     # test_all_bill_initiators_to_date #TODO: create unit test
     # members_of_knesset_faction_and_side_by_date_test() #TODO: create unit test
 
     # # ----- step 5 -----
-    # bill_initiators()
+    bill_initiators()
 
     # # ----- step 6 -----
     # test_bill_initiators() #TODO: create unit test
 
     # # ----- step 7 -----
-    # bill_to_side()
+    bill_to_side()
 
     # # ----- step 8 -----
-    # bill()
+    bill()
 
     # # ----- step 10 -----
     # bill_test()

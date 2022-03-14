@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def members_of_faction_by_date():
+def members_of_knesset_faction_by_date():
     """
     """
 

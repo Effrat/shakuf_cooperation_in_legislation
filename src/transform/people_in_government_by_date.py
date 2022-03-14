@@ -10,7 +10,7 @@ def people_in_government_by_date():
     KNS_PersonToPosition = KNS_PersonToPosition[KNS_PersonToPosition['PersonID'] != 30299]
     # assumption: factions with at least one member in a government job are factions in the coalition or head of coalition.
     in_government = [31, 39, 40, 45, 49, 50, 51, 57, 59, 65, 73]
-    coalition_chairman = [29, 30, 122, 123]
+    coalition_or_knesset_chairman = [29, 30, 122, 123, 285078]
     people_in_government = KNS_PersonToPosition[KNS_PersonToPosition['PositionID'].isin(in_government + coalition_chairman)]
     people_in_government = people_in_government[['PersonID', 'PositionID', 'StartDate', 'FinishDate']]
     people_in_government['FinishDate'].fillna(today, inplace=True)
