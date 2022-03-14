@@ -1,4 +1,4 @@
-# TODO: manage user feedbacks (printouts + docstrings) for for all modules: conformity, coherence.
+# TODO: user feedbacks (printouts + docstrings) for for all modules: conformity, coherence.
 
 from folders_structure.create_folders import create_required_folders
 from retrieve.odata import retrieve_raw_data
@@ -15,6 +15,7 @@ from transform.people_in_government_by_date import people_in_government_by_date
 from transform.members_of_faction_by_date import members_of_faction_by_date
 from transform.dates import dates
 from transform.bill_to_date import bill_to_date
+from transform.members_of_knesset_faction_by_date import members_of_knesset_faction_by_date
 from transform.faction_side_by_date import faction_side_by_date
 from transform.all_bill_initiators_to_date import all_bill_initiators_to_date
 from transform.members_of_knesset_faction_and_side_by_date import members_of_knesset_faction_and_side_by_date
@@ -40,36 +41,34 @@ def update_data():
     # bill_to_date_from_commettee_session()
     # all_bill_initiators()
     # members_of_knesset_by_date()
-    # people_in_government_by_date()
     # members_of_faction_by_date()
+    # people_in_government_by_date()
 
     # # ----- step 2 -----
-    # # test_members_of_knesset_by_date() #TODO: create unit test
     # dates()
     # bill_to_date()
+    # members_of_knesset_faction_by_date()
     # faction_side_by_date()
 
     # ----- step 3 -----
-    # test_faction_side_by_date #TODO: create unit test
+    # faction_side_by_date_test #TODO: create unit test
     # all_bill_initiators_to_date()
+    # members_of_knesset_faction_and_side_by_date()
 
     # ----- step 4 -----
     # test_all_bill_initiators_to_date #TODO: create unit test
-    # members_of_knesset_faction_and_side_by_date()
+    # members_of_knesset_faction_and_side_by_date_test() #TODO: create unit test
 
     # # ----- step 5 -----
-    # test_members_of_knesset_faction_and_side_by_date() #TODO: create unit test
-
-    # # ----- step 6 -----
     # bill_initiators()
 
-    # # ----- step 7 -----
+    # # ----- step 6 -----
     # test_bill_initiators() #TODO: create unit test
 
-    # # ----- step 8 -----
+    # # ----- step 7 -----
     # bill_to_side()
 
-    # # ----- step 9 -----
+    # # ----- step 8 -----
     # bill()
 
     # # ----- step 10 -----
