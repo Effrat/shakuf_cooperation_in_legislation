@@ -37,7 +37,8 @@ Data transformation logic:
 
 Possible missing data:
 ======================
--> Bill w/o date
+-> Bill w/o date (bill_to_date_from_session or bill_to_date_from_committee_session)
+-> Bill Date w/o sponsor side data for date
 * Data for most recent dates might not be updated.
 * Data missing in Knesset database:
     ->
