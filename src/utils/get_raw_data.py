@@ -1,10 +1,9 @@
-# from itsdangerous import exc
-from numpy import rec
 import pandas as pd
-# from logging import root
 from math import floor
-import requests, math
+import requests
 from IPython.display import clear_output
+
+BATCH_SIZE = 100
 
 def retrieve_table(suffix):
     data = odata_get_data_from_suffix(suffix)
@@ -33,10 +32,10 @@ def odata_get_records(base_url, pratial=1, skips=[], data=[], iter=1, metadata=[
     errors = []
     if len(skips) == 0:
         record_count = odata_get_record_count(base_url)
-        record_count = math.floor(record_count * pratial)
-        skips = range(0, int(record_count), 100)
+        record_count = floor(record_count * pratial)
+        skips = range(0, int(record_count), BATCH_SIZE)
     else:
-        record_count = len(skips) * 100
+        record_count = len(skips) * BATCH_SIZE
     batch = 0
     for skip in skips:
         try:
@@ -47,8 +46,9 @@ def odata_get_records(base_url, pratial=1, skips=[], data=[], iter=1, metadata=[
             batch_records = []
         batch = batch + 1
         # user feedback
+        # TODO: fix percentage calculation
         pct_errors = '{:.2%}'.format(len(errors) / record_count)
-        pct_done = '{:.2%}'.format((batch * 100) / record_count)
+        pct_done = '{:.2%}'.format((batch * BATCH_SIZE) / record_count)
         clear_output(wait=True)
         md = {
             'iter': iter,
