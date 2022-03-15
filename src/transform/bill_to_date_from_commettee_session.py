@@ -22,11 +22,9 @@ def bill_to_date_from_commettee_session():
     commettee_session_to_date.columns = ['session_id', 'date']
     commettee_session_to_date
 
-    bill_to_date_from_commettee_session = bills_commettee_sessions.set_index(
-        'session_id').join(
-            commettee_session_to_date.set_index(
-                'session_id'), how='left')
-    bill_to_date_from_commettee_session.reset_index(inplace=True)
+    bill_to_date_from_commettee_session = pd.merge(
+        bills_commettee_sessions, commettee_session_to_date,
+        on='session_id', how='left')
     bill_to_date_from_commettee_session = bill_to_date_from_commettee_session.drop(columns=['session_id'])
     bill_to_date_from_commettee_session['date'] = bill_to_date_from_commettee_session['date'].dt.date
 

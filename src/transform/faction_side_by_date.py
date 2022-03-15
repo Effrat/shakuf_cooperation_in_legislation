@@ -10,7 +10,6 @@ def faction_side_by_date():
     today = date.today()
 
 
-    # ===================   import data   ===================
     members_of_faction_by_date = pd.read_csv(
         '../data/transformed/members_of_faction_by_date.csv',
         parse_dates=['date'])
@@ -21,27 +20,23 @@ def faction_side_by_date():
     people_in_government_by_date = people_in_government_by_date[['date', 'person_id']].drop_duplicates()
     people_in_government_by_date
 
-
-
-    # ===================    factions in Knesset   ===================
     factions_in_knesset = members_of_faction_by_date[['date', 'faction_id']].drop_duplicates()
     factions_in_knesset
 
 
-    # ===================   factions in coalition   ===================
+    # -----   factions in coalition  -----
     """
     If at least one member of the faction is in government (or coalition chairman) -
     then the faction is in coalition.
     """
-    factions_in_coalition_by_date = people_in_government_by_date.set_index(
-        ['date', 'person_id']).join(
-            members_of_faction_by_date.set_index(
-                ['date', 'person_id']), how='inner')
+    factions_in_coalition_by_date = pd.merge(
+        people_in_government_by_date, members_of_faction_by_date,
+        on=['date', 'person_id'], how='inner')
     factions_in_coalition_by_date = factions_in_coalition_by_date.reset_index()[['date', 'faction_id']]
     factions_in_coalition_by_date.drop_duplicates(inplace=True)
     factions_in_coalition_by_date
 
-    # # ===================   manual data corrections   ===================
+    # # -----   manual data corrections   -----
     # # add Raam
     # dates = pd.date_range('2021-06-14', today, closed='left')
     # raam = pd.DataFrame(index=dates)
@@ -69,7 +64,7 @@ def faction_side_by_date():
     # factions_in_coalition_by_date.drop_duplicates(inplace=True)
     # factions_in_coalition_by_date
 
-    # ===================    faction in/out of coalition   ===================
+
     factions_in_coalition_by_date['faction_side'] = 'coalition'
 
     faction_side_by_date = factions_in_knesset.set_index(
