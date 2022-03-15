@@ -1,6 +1,21 @@
 last update: 2022-03-15
 
 
+Data source:
+============
+
+
+
+Premise:
+========
+The goal of this project is to quantify and compare the levels of cooperation on bills sponsoring by members if the Israeli Knesset.
+A 'sponsor' in this document will refer to either initiator or joiner (to the bill).
+For this purpose, we define 'cooperation' as sponsoring a bill that is mostly sponsored by 'the other side' (sides: coalition / opposition), or a bill that has equal number of sponsors from each side.
+While a list of connections between sponsors and bills is provided by the Knesset's database, no data is available on the association of the sponsors to a side.
+Therefore, we need to create a connection between each bill to a date, and each member of Knesset to a date to a side.
+Then the data can be joined on the dates, so that each association will also contain data for the side of the sponsor on the date associated with the bill.
+In order to assign a side for each member of Knesset for each date, we need to assign a side for each faction for ach date.
+
 
 Assumptions:
 ============

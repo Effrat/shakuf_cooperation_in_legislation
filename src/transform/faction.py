@@ -20,5 +20,4 @@ def faction():
         '../data/model/dimensions/faction.xlsx',
         sheet_name='faction',
         header=True,
-        index=False
-        )
+        index=False)
