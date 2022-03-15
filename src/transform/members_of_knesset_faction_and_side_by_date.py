@@ -20,8 +20,8 @@ def members_of_knesset_faction_and_side_by_date():
 
     # ---- members of Knesset who are also members of a faction and their side by date ----
     members_of_knesset_faction_and_side_by_date = pd.merge(
-        members_of_knesset_faction_by_date,
-        faction_side_by_date, on=['date', 'faction_id'], how='left')
+        members_of_knesset_faction_by_date, faction_side_by_date,
+        on=['date', 'faction_id'], how='left')
     members_of_knesset_faction_and_side_by_date.rename(columns={'faction_side': 'person_side'}, inplace=True)
     # # members_of_knesset_faction_and_side_by_date['faction_id'].fillna(0, inplace=True)
     # # members_of_knesset_faction_and_side_by_date['faction_id'] = members_of_knesset_faction_and_side_by_date['faction_id'].astype('Int64')

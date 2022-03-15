@@ -1,10 +1,20 @@
-last update: 2022-02-13
-
-Changes to original data:
+last update: 2022-03-15
 
 
 
+Data transformations logic:
+===========================
 
 
 
-To report additional bugs in the data, please contact: effratk@gmail.com
+
+
+Additions to original data:
+===========================
+
+
+
+
+Contact:
+========
+To report bugs or missing data, please contact: effratk@gmail.com

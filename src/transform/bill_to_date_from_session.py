@@ -22,7 +22,8 @@ def bill_to_date_from_session():
     session_to_date
 
     bill_to_date_from_session = pd.merge(
-        bills_sessions, session_to_date, on='session_id', how='left')
+        bills_sessions, session_to_date,
+        on='session_id', how='left')
     bill_to_date_from_session = bill_to_date_from_session.drop(columns=['session_id'])
     bill_to_date_from_session['date'] = bill_to_date_from_session['date'].dt.date
 

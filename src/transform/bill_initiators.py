@@ -16,8 +16,7 @@ def bill_initiators():
     all_bill_initiators_to_date
 
     bill_initiators = pd.merge(
-        all_bill_initiators_to_date,
-        members_of_knesset_faction_and_side_by_date,
+        all_bill_initiators_to_date, members_of_knesset_faction_and_side_by_date,
         on=['person_id', 'date'], how='outer')
     bill_initiators.reset_index(inplace=True)
     # bill_initiators['faction_id'] = bill_initiators['faction_id'].fillna(0)

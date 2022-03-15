@@ -18,11 +18,8 @@ def bill():
     KNS_Bill.drop(columns=['status_id'], inplace=True)
     KNS_Bill
 
-    bill = KNS_Bill.set_index(
-        ['bill_id']).join(
-            bill_to_side.set_index(
-                ['bill_id']), how='outer')
-    bill.reset_index(inplace=True)
+    bill = pd.merge(bill_to_side, KNS_Bill, on=['bill_id'], how='outer')
+    
     bill.to_excel(
         '../data/model/dimensions/bill.xlsx',
         sheet_name='bill',

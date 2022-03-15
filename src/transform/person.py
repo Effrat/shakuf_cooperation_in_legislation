@@ -14,7 +14,9 @@ def person():
     KNS_MkSiteCode.rename(columns={'KnsID': 'PersonID'}, inplace=True)
     KNS_MkSiteCode
 
-    person = pd.merge(KNS_Person, KNS_MkSiteCode, on='PersonID', how='outer')
+    person = pd.merge(
+        KNS_Person, KNS_MkSiteCode,
+        on='PersonID', how='left')
     person['SiteId'] = person['SiteId'].astype('Int64')
     person['FullName'] = person['FirstName'] + ' ' + person['LastName']
     person.columns = ['person_id', 'last_name', 'first_name', 'gender', 'site_id', 'full_name']
