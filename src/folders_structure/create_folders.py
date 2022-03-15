@@ -14,4 +14,7 @@ folders = [
 path = os.path.dirname(os.getcwd())
 
 def create_required_folders():
+    """
+    Create required folders in the parent directory.
+    """
     create_folders(path=path, folders=folders)

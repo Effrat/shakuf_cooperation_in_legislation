@@ -4,7 +4,7 @@ from datetime import date
 
 def knesset_by_date():
     """
-    This function expands the KNS_KnessetDates start and end dates into a date column.
+    Creates knesset_by_date table from KNS_KnessetDates.
     """
     today = date.today()
 

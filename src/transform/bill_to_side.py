@@ -3,6 +3,7 @@ import pandas as pd
 
 def bill_to_side():
     """
+    Creates bill_to_side table from bill_initiators.
     """
     bill_initiators = pd.read_csv(
         '../data/model/facts/bill_initiators.csv',

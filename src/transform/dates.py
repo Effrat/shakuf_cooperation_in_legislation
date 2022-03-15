@@ -2,8 +2,8 @@ import pandas as pd
 from datetime import date
 
 def dates():
-    """"
-    This function creates a datess dimension table for the FE model.
+    """
+    Creates dates table from knesset_by_date.
     """
     today = date.today()
     knesset_by_dates = pd.read_excel('../data/transformed/knesset_by_date.xlsx')

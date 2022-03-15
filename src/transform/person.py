@@ -4,7 +4,7 @@ import pandas as pd
 
 def person():
     '''
-    This function transforms the KNS_Person dataframe to a dimension for the FE data model.
+    Creates person table from KNS_Person and KNS_MkSiteCode.
     '''
     KNS_Person = pd.read_excel('..\data\\raw\\KNS_Person.xlsx', index_col=0)
     KNS_Person = KNS_Person[['PersonID', 'LastName', 'FirstName', 'GenderDesc']].drop_duplicates()

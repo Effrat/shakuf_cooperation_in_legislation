@@ -3,7 +3,7 @@ from datetime import date
 
 def knesset():
     '''
-    This function transforms the KNS_KnessetDates dataframe to a dimension for the FE data model.
+    Creates knesset table from KNS_Knesset.
     '''
     today = date.today()
 

@@ -2,7 +2,8 @@ import pandas as pd
 
 
 def all_bill_initiators():
-    """"
+    """
+    Creates all_bill_initiators table from KNS_BillInitiator and KNS_BillHistoryInitiator.
     """
 # members_of_knesset_faction_and_side_by_date = pd.read_csv(
 #     '../data/transformed/members_of_knesset_faction_and_side_by_date.csv')

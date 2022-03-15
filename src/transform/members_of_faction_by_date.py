@@ -4,6 +4,7 @@ from datetime import date
 
 def members_of_faction_by_date():
     """
+    Creates members_of_faction_by_date table from KNS_PersonToPosition.
     """
     today = date.today()
 

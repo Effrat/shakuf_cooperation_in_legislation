@@ -2,6 +2,7 @@ import pandas as pd
 
 def bill():
     """
+    Creates bill table from bill_to_side and KNS_Bill.
     """
     bill_to_side = pd.read_excel(
         '../data/transformed/bill_to_side.xlsx')

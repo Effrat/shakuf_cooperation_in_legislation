@@ -4,6 +4,7 @@ import pandas as pd
 
 def members_of_knesset_faction_and_side_by_date():
     """
+    Creates members_of_knesset_faction_and_side_by_date table from members_of_knesset_faction_by_date and faction_side_by_date.
     """
 
     members_of_knesset_faction_by_date = pd.read_csv(

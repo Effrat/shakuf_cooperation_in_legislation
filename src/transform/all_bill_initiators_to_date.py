@@ -2,6 +2,7 @@ import pandas as pd
 
 def all_bill_initiators_to_date():
     """
+    Creates all_bill_initiators_to_date table from bill_to_date and all_bills_initiators.
     """
     bill_to_date = pd.read_excel(
         '../data/transformed/bill_to_date.xlsx',

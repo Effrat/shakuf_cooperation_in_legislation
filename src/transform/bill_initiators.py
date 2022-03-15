@@ -3,6 +3,7 @@ import pandas as pd
 
 def bill_initiators():
     """
+    Creates bill_initiators table from members_of_knesset_faction_and_side_by_date and all_bill_initiators_to_date.
     """
     members_of_knesset_faction_and_side_by_date = pd.read_csv(
         '../data/transformed/members_of_knesset_faction_and_side_by_date.csv',

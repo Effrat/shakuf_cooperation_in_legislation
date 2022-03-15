@@ -5,6 +5,7 @@ from datetime import date
 
 def faction_side_by_date():
     """
+    Creates faction_side_by_date table from members_of_faction_by_date and people_in_government_by_date.
     """
     today = date.today()
 

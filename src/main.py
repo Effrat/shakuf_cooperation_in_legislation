@@ -1,4 +1,4 @@
-# TODO: user feedbacks (printouts + docstrings) for for all modules: conformity, coherence.
+# TODO: user feedbacks (printouts) for for all modules: conformity, coherence.
 
 from folders_structure.create_folders import create_required_folders
 from retrieve.odata import retrieve_raw_data

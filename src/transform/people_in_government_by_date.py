@@ -4,6 +4,7 @@ from datetime import date
 
 def people_in_government_by_date():
     """
+    Creates people_in_government_by_date table from KNS_PersonToPosition.
     """
     today = date.today()
     KNS_PersonToPosition = pd.read_excel('../data/raw/KNS_PersonToPosition.xlsx')

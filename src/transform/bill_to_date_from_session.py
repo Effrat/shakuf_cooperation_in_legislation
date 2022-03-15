@@ -2,6 +2,7 @@ import pandas as pd
 
 def bill_to_date_from_session():
     """
+    Creates bill_to_date_from_session table from KNS_PlenumSession and KNS_PlmSessionItem.
     """
     KNS_PlmSessionItem = pd.read_excel(
         '../data/raw/KNS_PlmSessionItem.xlsx',

@@ -4,7 +4,7 @@ from datetime import date
 
 def faction():
     '''
-    This function transforms the KNS_Faction dataframe to a dimension for the FE data model.
+    Creates faction table from KNS_Faction.
     '''
     today = date.today()
 
