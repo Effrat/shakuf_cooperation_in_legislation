@@ -45,11 +45,11 @@ def all_bill_initiators():
     print(KNS_BillHistoryInitiator.info())
     KNS_BillHistoryInitiator
 
-    all_bills_initiators = pd.concat([KNS_BillInitiator, KNS_BillHistoryInitiator])
-    all_bills_initiators = all_bills_initiators.groupby(['bill_id', 'person_id']).agg('max')
-    all_bills_initiators.reset_index(inplace=True)
-    all_bills_initiators.to_excel(
-        '../data/transformed/all_bills_initiators.xlsx',
-        sheet_name='all_bills_initiators',
+    all_bill_sponsors = pd.concat([KNS_BillInitiator, KNS_BillHistoryInitiator])
+    all_bill_sponsors = all_bill_sponsors.groupby(['bill_id', 'person_id']).agg('max')
+    all_bill_sponsors.reset_index(inplace=True)
+    all_bill_sponsors.to_excel(
+        '../data/transformed/all_bill_sponsors.xlsx',
+        sheet_name='all_bill_sponsors',
         index=False)
-    all_bills_initiators
+    all_bill_sponsors
