@@ -37,13 +37,14 @@ Data transformation logic:
 
 Possible missing data:
 ======================
+-> Bill w/o date
 * Data for most recent dates might not be updated.
 * Data missing in Knesset database:
     ->
 
 * Error due to data transformations:
     ->
-    
+
 
 
 
