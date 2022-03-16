@@ -16,6 +16,7 @@ Therefore, we need to create a connection between each bill to a date, and each 
 Then the data can be joined on the dates, so that each association will also contain data for the side of the sponsor on the date associated with the bill.
 In order to assign a side for each member of Knesset for each date, we need to assign a side for each faction for ach date.
 
+Each bill sponsor can either be an initiator or a joiner. The bill side is defined here as the side with more initiators than the other. If the number of initiators is equal on both side, than the bill is considered to be bipartisan.
 
 Assumptions:
 ============
