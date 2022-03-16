@@ -37,6 +37,8 @@ Data transformation logic:
 
 Possible missing data:
 ======================
+* Data missing in Knesset database:
+-> 
 -> Member of Knesset data is missing for a certain date (members_of_knesset_by_date)
 -> Member of faction data is missing for a certain date (members_of_faction_by_date)
 -> People in government data is missing for a certain date (people_in_government_by_date)
@@ -48,11 +50,10 @@ Possible missing data:
 -> Bill w/o date (bill_to_date_from_session or bill_to_date_from_committee_session)
 -> Bill w/ sponsor and date, w/o sponsor side for date (bill_sponsors)
 * Data for most recent dates might not be updated (der'i, current Knesset/government)
-* Data missing in Knesset database:
     ->
 
 * Error due to data transformations:
-    ->
+    -> Faction in coalition, but not in Knesset for date (faction_side_by_date)
 
 
 
