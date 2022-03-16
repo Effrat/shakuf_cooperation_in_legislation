@@ -17,6 +17,4 @@ def knesset():
     knesset.columns = ['knesset_num', 'name', 'start_date', 'end_date']
     knesset.to_excel(
         '../data/model/dimensions/knesset.xlsx',
-        sheet_name='knesset',
-        index=False)
-    knesset
+        sheet_name='knesset', index=False)

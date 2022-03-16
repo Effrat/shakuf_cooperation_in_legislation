@@ -31,5 +31,4 @@ def knesset_by_date():
 
     knesset_by_date.to_excel(
         '../data/transformed/knesset_by_date.xlsx',
-        sheet_name='knesset_by_date',
-        index=False)
+        sheet_name='knesset_by_date', index=False)

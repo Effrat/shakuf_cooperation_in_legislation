@@ -18,6 +18,4 @@ def faction():
 
     faction.to_excel(
         '../data/model/dimensions/faction.xlsx',
-        sheet_name='faction',
-        header=True,
-        index=False)
+        sheet_name='faction', header=True, index=False)

@@ -37,6 +37,11 @@ Data transformation logic:
 
 Possible missing data:
 ======================
+-> Member of Knesset data is missing for a certain date (members_of_knesset_by_date)
+-> Member of faction data is missing for a certain date (members_of_faction_by_date)
+-> People in government data is missing for a certain date (people_in_government_by_date)
+
+-> For each bill, the date associated with the bill is the first date the bill was scheduled to be discussed, either in a plenum session, or in a committee session.
 -> Member of Knesset w/o faction data for date (members_of_faction_by_date)
 -> People in government w/o faction data for date ()
 -> Bill w/o sponsors data
