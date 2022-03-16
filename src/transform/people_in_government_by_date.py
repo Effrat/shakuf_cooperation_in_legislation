@@ -28,10 +28,10 @@ def people_in_government_by_date():
             closed='left')
 
         expanded_dates_batch = pd.DataFrame(index=dates)
-        expanded_dates_batch.columns.name = 'date'
         expanded_dates_batch['person_id'] = people_in_government.loc[row]['PersonID']
         people_in_government_by_date = pd.concat([people_in_government_by_date, expanded_dates_batch])
     people_in_government_by_date.reset_index(inplace=True)
+    people_in_government_by_date.rename(columns={'index': 'date'}, inplace=True)
 
     people_in_government_by_date.to_excel(
         '../data/transformed/people_in_government_by_date.xlsx',
