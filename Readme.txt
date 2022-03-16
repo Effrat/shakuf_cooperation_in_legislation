@@ -37,6 +37,7 @@ Data transformation logic:
 
 Possible missing data:
 ======================
+-> Member of Knesset w/o faction data for date (members_of_faction_by_date)
 -> Bill w/o sponsors data
 -> Bill w/o date (bill_to_date_from_session or bill_to_date_from_committee_session)
 -> Bill w/ sponsor and date, w/o sponsor side for date (bill_sponsors)
