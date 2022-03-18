@@ -5,7 +5,7 @@ def bill_to_date():
     Creates bill_to_date table from bill_to_date_from_commettee_session and bill_to_date_from_session.
     """
     bill_to_date_from_commettee_session = pd.read_excel(
-        '../data/transformed/bill_to_date_from_commettee_session.xlsx',
+        '../data/transformed/bill_to_date_from_committee_session.xlsx',
         parse_dates=['date'])
 
     bill_to_date_from_session = pd.read_excel(
