@@ -1,6 +1,6 @@
 import pandas as pd
 from datetime import date
-
+# import json
 
 
 def faction_side_by_date():
@@ -59,6 +59,8 @@ def faction_side_by_date():
     # meretz.reset_index(inplace=True)
     # factions_in_coalition_by_date = factions_in_coalition_by_date.append(meretz, ignore_index=True)
 
+
+    # ----- join -----
     factions_in_knesset['in_knesset'] = True # for testing purposes
     factions_in_coalition_by_date['faction_side'] = 'coalition'
     faction_side_by_date = pd.merge(
@@ -69,18 +71,28 @@ def faction_side_by_date():
     faction_side_by_date['faction_side'].fillna('opposition', inplace=True)
     faction_side_by_date['in_knesset'].fillna(False, inplace=True) # for testing purposes
 
+
     # ----- testing/feedback -----
-    in_knesset_options = faction_side_by_date['in_knesset'].nunique()
-    in_knesset_options
-    if in_knesset_options == 1:
-        feedback = 'There are no factions in coalition, but not in Knesset for date.'
-    else:
-        errors = faction_side_by_date[faction_side_by_date['in_knesset'] != True]
-        errors = str(errors.to_dict())
-        feedback = 'Factions in coalition, but not in Knesset for date:' + '\n' + errors
-    f = open('../data/reports/faction_side_by_date_errors.txt','w+')
-    f.write(feedback)
-    f.close()
+    # factions in coalition, but not in Knesset for date
+    not_in_knesset_errors = faction_side_by_date[
+        (faction_side_by_date['in_knesset'] == False) &
+        (faction_side_by_date['faction_side'] == 'coalition')]
+    not_in_knesset_errors.to_csv(
+        '../data/reports/factions_in_coalition_not_in_knesset_by_date.csv',
+        index=False)
+
+    # people in government w/o faction affiliation
+    people_in_government_and_faction_by_date = pd.merge(
+        people_in_government_by_date, members_of_faction_by_date,
+        on=['date', 'person_id'], how='left')
+    no_faction = people_in_government_and_faction_by_date[people_in_government_and_faction_by_date['faction_id'].isnull()]
+    no_faction = no_faction[['date', 'person_id']].drop_duplicates()
+    no_faction['date'] = no_faction['date'].dt.strftime('%Y-%m-%d')
+    no_faction.to_csv(
+        '../data/reports/people_in_government_wo_faction_by_date.csv',
+        index=False)
+
+
 
     # ----- save -----
     faction_side_by_date.to_csv(
