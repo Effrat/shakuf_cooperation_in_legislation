@@ -21,17 +21,17 @@ def members_of_faction_by_date():
     members_of_faction_by_date = pd.DataFrame(columns=['person_id', 'faction_id', 'date'])
 
 
-    # # ----- add missing records ----- 
-    # manual_data_fillers = pd.DataFrame([
-    #     {'person_id': 23631, 'faction_id': 967, 'date': '2021-06-23'},
-    #     {'person_id': 23631, 'faction_id': 967, 'date': '2021-06-24'},
-    #     {'person_id': 23673, 'faction_id': 963, 'date': '2021-06-20'},
-    #     {'person_id': 23673, 'faction_id': 963, 'date': '2021-06-21'},
-    #     {'person_id': 23512, 'faction_id': 966, 'date': '2021-06-21'},
-    #     {'person_id': 23512, 'faction_id': 966, 'date': '2021-06-22'},
-    # ])
-    # manual_data_fillers['date'] = pd.to_datetime(manual_data_fillers['date'])
-    # members_of_faction_by_date = pd.concat([members_of_faction_by_date, manual_data_fillers])
+    # ----- add missing records ----- 
+    manual_data_fillers = pd.DataFrame([
+        {'person_id': 23631, 'faction_id': 967, 'date': '2021-06-23'}, # Karin Elharar + Yesh Atid
+        {'person_id': 23631, 'faction_id': 967, 'date': '2021-06-24'}, # Karin Elharar + Yesh Atid
+        {'person_id': 23673, 'faction_id': 963, 'date': '2021-06-20'}, # Omer Bar-Lev + Ha'avoda
+        {'person_id': 23673, 'faction_id': 963, 'date': '2021-06-21'}, # Omer Bar-Lev + Ha'avoda
+        {'person_id': 23512, 'faction_id': 966, 'date': '2021-06-21'}, # Ayelet Shaked + Yemina
+        {'person_id': 23512, 'faction_id': 966, 'date': '2021-06-22'}, # Ayelet Shaked + Yemina
+    ])
+    manual_data_fillers['date'] = pd.to_datetime(manual_data_fillers['date'])
+    members_of_faction_by_date = pd.concat([members_of_faction_by_date, manual_data_fillers])
 
 
     # ----- expand dates -----
