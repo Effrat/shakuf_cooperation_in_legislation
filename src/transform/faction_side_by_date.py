@@ -34,30 +34,30 @@ def faction_side_by_date():
     factions_in_coalition_by_date = factions_in_coalition_by_date.reset_index()[['date', 'faction_id']].drop_duplicates()
     factions_in_coalition_by_date
 
-    # # ----- manual data corrections -----
-    # # add Raam
-    # dates = pd.date_range('2021-06-14', today, closed='left')
-    # raam = pd.DataFrame(index=dates)
-    # raam.index.name = 'date'
-    # raam['faction_id'] = 973
-    # raam.reset_index(inplace=True)
-    # factions_in_coalition_by_date = factions_in_coalition_by_date.append(raam, ignore_index=True)
+    # ----- manual data corrections -----
+    # Raam
+    dates = pd.date_range('2021-06-13', today, closed='left')
+    raam = pd.DataFrame(index=dates)
+    raam.index.name = 'date'
+    raam['faction_id'] = 973
+    raam.reset_index(inplace=True)
+    factions_in_coalition_by_date = factions_in_coalition_by_date.append(raam, ignore_index=True)
 
-    # # add Israel Betenu
-    # dates = pd.date_range('2021-06-14', today, closed='left')
-    # israel_betenu = pd.DataFrame(index=dates)
-    # israel_betenu.index.name = 'date'
-    # israel_betenu['faction_id'] = 968
-    # israel_betenu.reset_index(inplace=True)
-    # factions_in_coalition_by_date = factions_in_coalition_by_date.append(israel_betenu, ignore_index=True)
+    # Israel Betenu
+    dates = pd.date_range('2021-06-13', today, closed='left')
+    israel_betenu = pd.DataFrame(index=dates)
+    israel_betenu.index.name = 'date'
+    israel_betenu['faction_id'] = 968
+    israel_betenu.reset_index(inplace=True)
+    factions_in_coalition_by_date = factions_in_coalition_by_date.append(israel_betenu, ignore_index=True)
 
-    # # add Meretz
-    # dates = pd.date_range('2021-07-18', '2021-07-26', closed='left')
-    # meretz = pd.DataFrame(index=dates)
-    # meretz.index.name = 'date'
-    # meretz['faction_id'] = 970
-    # meretz.reset_index(inplace=True)
-    # factions_in_coalition_by_date = factions_in_coalition_by_date.append(meretz, ignore_index=True)
+    # Meretz
+    dates = pd.date_range('2021-07-18', '2021-07-26', closed='left')
+    meretz = pd.DataFrame(index=dates)
+    meretz.index.name = 'date'
+    meretz['faction_id'] = 970
+    meretz.reset_index(inplace=True)
+    factions_in_coalition_by_date = factions_in_coalition_by_date.append(meretz, ignore_index=True)
 
 
     # ----- join -----
@@ -73,14 +73,6 @@ def faction_side_by_date():
 
 
     # ----- testing/feedback -----
-    # factions in coalition, but not in Knesset for date
-    not_in_knesset_errors = faction_side_by_date[
-        (faction_side_by_date['in_knesset'] == False) &
-        (faction_side_by_date['faction_side'] == 'coalition')]
-    not_in_knesset_errors.to_csv(
-        '../data/reports/factions_in_coalition_not_in_knesset_by_date.csv',
-        index=False)
-
     # people in government w/o faction affiliation
     people_in_government_and_faction_by_date = pd.merge(
         people_in_government_by_date, members_of_faction_by_date,
@@ -89,7 +81,7 @@ def faction_side_by_date():
     no_faction = no_faction[['date', 'person_id']].drop_duplicates()
     no_faction['date'] = no_faction['date'].dt.strftime('%Y-%m-%d')
     no_faction.to_csv(
-        '../data/reports/people_in_government_wo_faction_by_date.csv',
+        '../data/reports/people_in_government_wo_faction.csv',
         index=False)
 
 
