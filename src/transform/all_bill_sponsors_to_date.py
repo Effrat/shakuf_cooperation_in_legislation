@@ -1,9 +1,9 @@
 import pandas as pd
 
 def all_bill_sponsors_to_date():
-"""
-Creates all_bill_sponsors_to_date table from bill_to_date and all_bills_sponsors.
-"""
+    """
+    Creates all_bill_sponsors_to_date table from bill_to_date and all_bills_sponsors.
+    """
 
 
     # ----- load -----
