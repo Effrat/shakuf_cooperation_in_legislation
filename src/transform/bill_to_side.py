@@ -11,7 +11,7 @@ def bill_to_side():
         '../data/model/facts/bill_sponsors.csv', parse_dates=['date'])
     bill_sponsors.groupby('is_initiator').nunique()
     bill_sponsors['person_side'] = bill_sponsors['person_side'].astype(str)
-    bill_sponsors
+    bill_sponsors.groupby(['person_side']).nunique()
 
 
 
@@ -39,15 +39,14 @@ def bill_to_side():
 
     # ----- logic definition -----
     bill_to_side = bill_to_side[bill_to_side['bill_id'].isin(bills_to_drop) == False]
-    bill_to_side['total'] = bill_to_side.sum(axis=1)
+    bill_to_side[['coalition', 'opposition', 'nan']].fillna(0, inplace=True)
+    bill_to_side['total'] = bill_to_side[['coalition', 'opposition']].sum(axis=1)
     bill_to_side['bill_side'] = 'unknown'
     bill_to_side['bill_side'][bill_to_side['coalition'] > bill_to_side['total'] / 2] = 'coalition'
     bill_to_side['bill_side'][bill_to_side['opposition'] > bill_to_side['total'] / 2] = 'opposition'
     bill_to_side['bill_side'][bill_to_side['coalition'] == bill_to_side['opposition']] = 'bipartisan'
     bill_to_side['bill_side'][bill_to_side['nan'] >= bill_to_side['total'] / 2] = 'unknown'
-    bill_to_side
-
-
+    bill_to_side#.groupby('bill_side').nunique()
 
 
 
@@ -55,3 +54,4 @@ def bill_to_side():
     bill_to_side = bill_to_side[['bill_id', 'bill_side']].drop_duplicates()
     bill_to_side.to_excel(
         '../data/transformed/bill_to_side.xlsx', index=False)
+    bill_to_side
