@@ -32,46 +32,46 @@ def update_data():
     # create_required_folders()
     # retrieve_raw_data()
     
-    # # ----- step 1 -----
-    # faction()
-    # knesset()
-    # knesset_by_date()
-    # person()
-    # bill_to_date_from_session()
-    # bill_to_date_from_committee_session()
-    # all_bill_sponsors()
-    # members_of_knesset_by_date()
-    # members_of_faction_by_date()
-    # people_in_government_by_date()
+    # ----- step 1 -----
+    faction()
+    knesset()
+    knesset_by_date()
+    person()
+    bill_to_date_from_session()
+    bill_to_date_from_committee_session()
+    all_bill_sponsors()
+    members_of_knesset_by_date()
+    members_of_faction_by_date()
+    people_in_government_by_date()
 
-    # # ----- step 2 -----
-    # dates()
-    # bill_to_date()
-    # members_of_knesset_faction_by_date()
-    # faction_side_by_date()
+    # ----- step 2 -----
+    dates()
+    bill_to_date()
+    members_of_knesset_faction_by_date()
+    faction_side_by_date()
 
-    # # ----- step 3 -----
+    # ----- step 3 -----
     # faction_side_by_date_test #TODO: create unit test
     all_bill_sponsors_to_date()
     members_of_knesset_faction_and_side_by_date()
 
-    # # ----- step 4 -----
+    # ----- step 4 -----
     # test_all_bill_sponsors_to_date #TODO: create unit test
     # members_of_knesset_faction_and_side_by_date_test() #TODO: create unit test
 
-    # # ----- step 5 -----
+    # ----- step 5 -----
     bill_sponsors()
 
-    # # ----- step 6 -----
+    # ----- step 6 -----
     # test_bill_sponsors() #TODO: create unit test
 
-    # # ----- step 7 -----
+    # ----- step 7 -----
     bill_to_side()
 
-    # # ----- step 8 -----
+    # ----- step 8 -----
     bill()
 
-    # # ----- step 10 -----
+    # ----- step 10 -----
     # bill_test()
 
 
