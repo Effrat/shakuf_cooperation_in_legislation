@@ -28,6 +28,13 @@ def bill():
 
 
 
+    # ----- filter bill_sponsors by bill ids in bill -----
+    bill_sponsors = pd.read_csv(
+        '../data/model/facts/bill_sponsors.csv', parse_dates=['date'])
+    bill_sponsors = bill_sponsors[bill_sponsors['bill_id'].isin(bill['bill_id'])]
+    bill_sponsors.to_csv(
+        '../data/model/facts/bill_sponsors.csv', index=False)
+
     # ----- save -----
     bill.to_excel(
         '../data/model/dimensions/bill.xlsx',
