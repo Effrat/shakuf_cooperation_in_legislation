@@ -24,7 +24,7 @@ def bill():
 
 
     # ----- transform -----
-    bill = pd.merge(bill_to_side, KNS_Bill, on=['bill_id'], how='left')
+    bill = pd.merge(bill_to_side, KNS_Bill, on=['bill_id'], how='inner')
 
 
 
