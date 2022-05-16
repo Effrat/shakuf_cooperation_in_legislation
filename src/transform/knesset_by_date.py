@@ -8,6 +8,7 @@ def knesset_by_date():
     """
     today = date.today()
 
+    # ----- load -----
     KNS_KnessetDates = pd.read_excel('../data/raw/KNS_KnessetDates.xlsx', index_col=0)
     knesset = KNS_KnessetDates[['KnessetNum', 'Name', 'Assembly', 'Plenum', 'PlenumStart', 'PlenumFinish', 'IsCurrent']]
     knesset['PlenumFinish'].fillna(today, inplace=True)
@@ -15,6 +16,7 @@ def knesset_by_date():
     knesset['PlenumFinish'] = pd.to_datetime(knesset['PlenumFinish'])
     knesset.sort_values('PlenumStart', inplace=True, ascending=False)
 
+    # ----- transform -----
     knesset_by_date = pd.DataFrame()
     for knesset_date_id in (knesset.index):
         dates = pd.date_range(
@@ -29,6 +31,7 @@ def knesset_by_date():
     knesset_by_date.reset_index(inplace=True)
     knesset_by_date.rename(columns={'index':'date'}, inplace=True) 
 
+    # ----- save -----
     knesset_by_date.to_excel(
         '../data/transformed/knesset_by_date.xlsx',
         sheet_name='knesset_by_date', index=False)

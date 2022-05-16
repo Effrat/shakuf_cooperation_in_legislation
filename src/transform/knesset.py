@@ -6,7 +6,8 @@ def knesset():
     Creates knesset table from KNS_Knesset.
     '''
     today = date.today()
-
+    
+    # ----- load -----
     KNS_KnessetDates = pd.read_excel('../data/raw/KNS_KnessetDates.xlsx', index_col=0)
     knesset = KNS_KnessetDates[['KnessetNum', 'Name', 'PlenumStart', 'PlenumFinish', 'IsCurrent']]
     knesset['PlenumFinish'].fillna(today, inplace=True)
@@ -14,7 +15,8 @@ def knesset():
     knesset = knesset.groupby('KnessetNum').agg({'Name': 'max', 'PlenumStart': 'min', 'PlenumFinish': 'max'})
     knesset.reset_index(inplace=True)
 
+    # ----- save -----
     knesset.columns = ['knesset_num', 'name', 'start_date', 'end_date']
     knesset.to_excel(
-        '../data/model/dimensions/knesset.xlsx',
+        '../data/transformed/knesset.xlsx',
         sheet_name='knesset', index=False)

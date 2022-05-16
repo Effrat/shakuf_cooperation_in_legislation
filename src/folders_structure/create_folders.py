@@ -5,8 +5,8 @@ from utils.folders_structure import create_folders
 folders = [
     '\\data\\raw',
     '\\data\\transformed',
-    '\\data\\model\\dimensions',
-    '\\data\\model\\facts',
+    # '\\data\\model\\dimensions',
+    # '\\data\\model\\facts',
     '\\data\\reports'
 ]
 

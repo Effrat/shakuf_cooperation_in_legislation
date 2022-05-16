@@ -36,5 +36,10 @@ def person():
 
     # ----- save -----
     person.to_excel(
-        '../data/model/dimensions/person.xlsx',
+        '../data/transformed/person.xlsx',
         sheet_name='person', index=False)
+
+    # ----- export to json -----
+    person.to_json(
+        '../data/transformed/person.json',
+        orient='records')

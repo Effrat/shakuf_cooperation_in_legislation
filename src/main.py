@@ -20,17 +20,17 @@ from transform.faction_side_by_date import faction_side_by_date
 from transform.all_bill_sponsors_to_date import all_bill_sponsors_to_date
 from transform.members_of_knesset_faction_and_side_by_date import members_of_knesset_faction_and_side_by_date
 from transform.bill_sponsors import bill_sponsors
-from transform.bill_to_side import bill_to_side
-from transform.bill import bill
-
+from transform.bill_to_type import bill_to_type
+from transform.bill_sponsors_w_type import bill_sponsors_w_type
+from transform.front_end import front_end
 
 def update_data():
     """
     Updates the raw source data and transforms it as necessary, to create tables for the front-end data model.
     """
     # ----- step 0 -----
-    # create_required_folders()
-    # retrieve_raw_data()
+    create_required_folders()
+    retrieve_raw_data()
     
     # ----- step 1 -----
     faction()
@@ -48,7 +48,7 @@ def update_data():
     dates()
     bill_to_date()
     members_of_knesset_faction_by_date()
-    faction_side_by_date()
+    # faction_side_by_date()
 
     # ----- step 3 -----
     # faction_side_by_date_test #TODO: create unit test
@@ -66,13 +66,13 @@ def update_data():
     # test_bill_sponsors() #TODO: create unit test
 
     # ----- step 7 -----
-    bill_to_side()
+    bill_to_type()
 
     # ----- step 8 -----
-    bill()
+    bill_sponsors_w_type()
 
     # ----- step 10 -----
-    # bill_test()
+    front_end()
 
 
  

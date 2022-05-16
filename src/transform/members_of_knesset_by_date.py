@@ -8,7 +8,10 @@ def members_of_knesset_by_date():
     """
     today = date.today()
 
+    # ----- load -----
     KNS_PersonToPosition = pd.read_excel('../data/raw/KNS_PersonToPosition.xlsx')
+
+    # ----- transform -----
     KNS_PersonToPosition = KNS_PersonToPosition[KNS_PersonToPosition['PersonID'] != 30299]
     members_of_knesset = KNS_PersonToPosition[KNS_PersonToPosition['PositionID'].isin([43, 61])] # member of knesset
     members_of_knesset = members_of_knesset[['PersonID', 'StartDate', 'FinishDate', 'KnessetNum']]
@@ -19,6 +22,7 @@ def members_of_knesset_by_date():
 
     members_of_knesset_by_date = pd.DataFrame()
 
+    # ----- expand dates -----
     for row in (members_of_knesset.index):
         dates = pd.date_range(
             members_of_knesset.loc[row]['StartDate'],
@@ -33,5 +37,7 @@ def members_of_knesset_by_date():
     members_of_knesset_by_date.reset_index(inplace=True)
     members_of_knesset_by_date.rename(columns={'index': 'date'}, inplace=True)
     members_of_knesset_by_date['knesset_num'] = members_of_knesset_by_date['knesset_num'].astype(int)
+
+    # ----- save -----
     members_of_knesset_by_date.to_csv(
         '../data/transformed/members_of_knesset_by_date.csv', index=False)

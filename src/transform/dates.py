@@ -6,9 +6,12 @@ def dates():
     Creates dates table from knesset_by_date.
     """
     today = date.today()
+
+    # ----- load -----
     knesset_by_dates = pd.read_excel(
         '../data/transformed/knesset_by_date.xlsx')
 
+    # ----- transform -----
     earliest_date = knesset_by_dates['date'].min()
     dates = pd.date_range(earliest_date, today, closed='left')
     dates = pd.DataFrame(index=dates)
@@ -22,6 +25,7 @@ def dates():
     dates.sort_values(by=['date'], inplace=True)
     dates['knesset_num'].fillna(method='ffill', inplace=True)
 
+    # ----- save -----
     dates.to_excel(
-        '../data/model/dimensions/dates.xlsx',
+        '../data/transformed/dates.xlsx',
         sheet_name='dates', index=False)

@@ -5,7 +5,7 @@ def all_bill_sponsors_to_date():
     Creates all_bill_sponsors_to_date table from bill_to_date and all_bills_sponsors.
     """
 
-
+    
     # ----- load -----
     bill_to_date = pd.read_excel(
         '../data/transformed/bill_to_date.xlsx',
@@ -15,7 +15,6 @@ def all_bill_sponsors_to_date():
     all_bills_sponsors = pd.read_excel(
         '../data/transformed/all_bill_sponsors.xlsx')
     all_bills_sponsors
-
 
 
     # ----- testing/feedback -----
