@@ -21,7 +21,8 @@ def latest_faction():
     # ----- transform -----
     latest_faction = members_of_knesset_faction_by_date.dropna()[['faction_id', 'date', 'person_id']]
     latest_faction['faction_id'] = latest_faction['faction_id'].astype(int)
-    latest_faction = latest_faction.groupby('person_id').agg({'date': 'min', 'faction_id': 'first'})
+    latest_faction = latest_faction.sort_values('date')
+    latest_faction = latest_faction.groupby('person_id').agg({'date': 'max', 'faction_id': 'last'})
     latest_faction.reset_index(inplace=True)
     latest_faction.drop(columns=['date'], inplace=True)
     latest_faction = pd.merge(latest_faction, faction, on='faction_id', how='left')
