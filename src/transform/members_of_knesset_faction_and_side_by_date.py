@@ -17,12 +17,18 @@ def members_of_knesset_faction_and_side_by_date():
         parse_dates=['date'])
 
     # ----- transform -----
-    # ---- members of Knesset who are also members of a faction and their side by date ----
+    # members of Knesset who are also members of a faction and their side by date
     members_of_knesset_faction_and_side_by_date = pd.merge(
         members_of_knesset_faction_by_date, faction_side_by_date,
         on=['date', 'faction_id'], how='left')
     members_of_knesset_faction_and_side_by_date.rename(columns={'faction_side': 'person_side'}, inplace=True)
     members_of_knesset_faction_and_side_by_date.drop_duplicates(subset=['date', 'person_id'], inplace=True)
+
+    # ----- manual correction -----
+    df = members_of_knesset_faction_and_side_by_date
+    df['person_side'][(df['person_id'] == 30786) & (df['date'] >= '2021-05-05')] = 'opposition'
+    members_of_knesset_faction_and_side_by_date = df
+    members_of_knesset_faction_and_side_by_date
 
     # ----- save -----
     members_of_knesset_faction_and_side_by_date.to_csv(

@@ -23,6 +23,7 @@ from transform.bill_sponsors import bill_sponsors
 from transform.bill_to_type import bill_to_type
 from transform.bill_sponsors_w_type import bill_sponsors_w_type
 from transform.front_end import front_end
+from transform.latest_faction import latest_faction
 
 def update_data():
     """
@@ -48,12 +49,13 @@ def update_data():
     dates()
     bill_to_date()
     members_of_knesset_faction_by_date()
-    # faction_side_by_date()
+    faction_side_by_date()
 
     # ----- step 3 -----
     # faction_side_by_date_test #TODO: create unit test
     all_bill_sponsors_to_date()
     members_of_knesset_faction_and_side_by_date()
+    latest_faction()
 
     # ----- step 4 -----
     # test_all_bill_sponsors_to_date #TODO: create unit test
@@ -63,7 +65,7 @@ def update_data():
     bill_sponsors()
 
     # ----- step 6 -----
-    # test_bill_sponsors() #TODO: create unit test
+    # # test_bill_sponsors() #TODO: create unit test
 
     # ----- step 7 -----
     bill_to_type()
