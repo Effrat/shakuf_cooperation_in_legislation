@@ -6,14 +6,13 @@ def bill_to_date_from_session():
     Outputs report: '../data/reports/nan_dates_from_session.csv'
     """
 
-    # ----- load -----
+# ----- load -----
     KNS_PlenumSession = pd.read_excel(
         '../data/raw/KNS_PlenumSession.xlsx',
         parse_dates=['StartDate'], index_col=0)
     session_to_date = KNS_PlenumSession[['PlenumSessionID', 'StartDate']]
     session_to_date.columns = ['session_id', 'date']
-    session_to_date['date'] = session_to_date['date'].dt.date
-    session_to_date
+    session_to_date = session_to_date[session_to_date['date'] > '2021-04-05']
 
     KNS_PlmSessionItem = pd.read_excel(
         '../data/raw/KNS_PlmSessionItem.xlsx', index_col=0)
@@ -26,15 +25,15 @@ def bill_to_date_from_session():
 
     # ----- transform -----
     bill_to_date_from_session = pd.merge(
-        session_to_date, bills_sessions,
-        on='session_id', how='right')
+        session_to_date, bills_sessions, on='session_id', how='right')
     bill_to_date_from_session = bill_to_date_from_session.drop(columns=['session_id'])
+    bill_to_date_from_session = bill_to_date_from_session[bill_to_date_from_session['date'].notna()]
+    bill_to_date_from_session['date'] = bill_to_date_from_session['date'].dt.date
     bill_to_date_from_session
 
-
-    # ----- testing/feedback -----
-    nan_dates_from_session = bill_to_date_from_session[bill_to_date_from_session['date'].isnull()]
-    nan_dates_from_session.to_csv('../data/reports/nan_dates_from_session.csv', index=False)
+    # # ----- testing/feedback -----
+    # nan_dates_from_session = bill_to_date_from_session[bill_to_date_from_session['date'].isnull()]
+    # nan_dates_from_session.to_csv('../data/reports/nan_dates_from_session.csv', index=False)
 
 
     # ----- save -----

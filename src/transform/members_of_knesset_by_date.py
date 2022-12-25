@@ -15,10 +15,29 @@ def members_of_knesset_by_date():
     KNS_PersonToPosition = KNS_PersonToPosition[KNS_PersonToPosition['PersonID'] != 30299]
     members_of_knesset = KNS_PersonToPosition[KNS_PersonToPosition['PositionID'].isin([43, 61])] # member of knesset
     members_of_knesset = members_of_knesset[['PersonID', 'StartDate', 'FinishDate', 'KnessetNum']]
+    members_of_knesset = members_of_knesset[members_of_knesset['KnessetNum'] == 24]
     members_of_knesset['FinishDate'].fillna(today, inplace=True)
+    members_of_knesset
+    # fill-in missing dates
+    for person_id in members_of_knesset['PersonID'].values:
+        df = members_of_knesset[members_of_knesset['PersonID'] == person_id]
+        if len(df) > 1:
+            print(person_id)
+            print(df.iloc[0]['FinishDate'])
+            print(df.iloc[1]['StartDate'])
+            members_of_knesset.append({
+                'PersonID': person_id,
+                'StartDate': df.iloc[0]['FinishDate'],
+                'FinishDate': df.iloc[1]['StartDate'],
+                'KnessetNum': 24
+            }, ignore_index=True)
+            print('\n')
+
     members_of_knesset['StartDate'] = pd.to_datetime(members_of_knesset['StartDate'])
     members_of_knesset['FinishDate'] = pd.to_datetime(members_of_knesset['FinishDate'])
     members_of_knesset.sort_values('FinishDate', inplace=True)
+
+    members_of_knesset
 
     members_of_knesset_by_date = pd.DataFrame()
 
@@ -37,6 +56,8 @@ def members_of_knesset_by_date():
     members_of_knesset_by_date.reset_index(inplace=True)
     members_of_knesset_by_date.rename(columns={'index': 'date'}, inplace=True)
     members_of_knesset_by_date['knesset_num'] = members_of_knesset_by_date['knesset_num'].astype(int)
+    members_of_knesset_by_date[members_of_knesset_by_date['person_id'] == 30662]
+
 
     # ----- save -----
     members_of_knesset_by_date.to_csv(

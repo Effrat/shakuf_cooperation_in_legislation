@@ -12,14 +12,29 @@ def members_of_faction_by_date():
     KNS_PersonToPosition = KNS_PersonToPosition[KNS_PersonToPosition['PersonID'] != 30299]
 
     members_of_faction = KNS_PersonToPosition[KNS_PersonToPosition['PositionID'].isin([48, 54])] # member of faction
+    members_of_faction = members_of_faction[members_of_faction['KnessetNum'] == 24]
     members_of_faction = members_of_faction[['PersonID', 'FactionID', 'StartDate', 'FinishDate']]
     members_of_faction['FinishDate'].fillna(today, inplace=True)
     members_of_faction['StartDate'] = pd.to_datetime(members_of_faction['StartDate'])
     members_of_faction['FinishDate'] = pd.to_datetime(members_of_faction['FinishDate'])
-    members_of_faction.sort_values('FinishDate', inplace=True, ascending=False)
+    members_of_faction.sort_values('FinishDate', inplace=True, ascending=True)
+    members_of_faction
+    # fill-in missing dates
+    for person_id in members_of_faction['PersonID'].values:
+        df = members_of_faction[members_of_faction['PersonID'] == person_id]
+        if len(df) > 1:
+            print(person_id)
+            print(df.iloc[0]['FinishDate'])
+            print(df.iloc[1]['StartDate'])
+            print('\n')
+            members_of_faction.append({
+                'PersonID': person_id,
+                'FactionID': df.iloc[-1]['FactionID'],
+                'StartDate': df.iloc[-1]['FinishDate'],
+                'FinishDate': df.iloc[-1]['StartDate']
+            }, ignore_index=True)
 
     members_of_faction_by_date = pd.DataFrame(columns=['person_id', 'faction_id', 'date'])
-
 
     # ----- add missing records ----- 
     manual_data_fillers = pd.DataFrame([
@@ -49,6 +64,7 @@ def members_of_faction_by_date():
         members_of_faction_by_date = pd.concat([members_of_faction_by_date, expanded_dates_batch])
 
     # ----- save -----
+    members_of_faction_by_date.drop_duplicates(inplace=True)
     members_of_faction_by_date.to_csv(
         '../data/transformed/members_of_faction_by_date.csv',
         index=False)

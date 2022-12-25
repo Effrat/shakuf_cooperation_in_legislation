@@ -12,6 +12,7 @@ def bill_to_date_from_committee_session():
     KNS_CommitteeSession
     committee_session_to_date = KNS_CommitteeSession[['CommitteeSessionID', 'StartDate']]
     committee_session_to_date.columns = ['session_id', 'date']
+    committee_session_to_date = committee_session_to_date[committee_session_to_date['date'] > '2021-04-05']
 
     KNS_CmtSessionItem = pd.read_excel(
         '../data/raw/KNS_CmtSessionItem.xlsx', index_col=0)  
@@ -25,6 +26,7 @@ def bill_to_date_from_committee_session():
         committee_session_to_date, bills_committee_sessions,
         on='session_id', how='right')
     bill_to_date_from_committee_session = bill_to_date_from_committee_session.drop(columns=['session_id'])
+    bill_to_date_from_committee_session = bill_to_date_from_committee_session[bill_to_date_from_committee_session['date'].notna()]
     bill_to_date_from_committee_session['date'] = bill_to_date_from_committee_session['date'].dt.date
 
     # ----- testing/feedback -----

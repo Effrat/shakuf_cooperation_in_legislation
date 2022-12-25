@@ -19,11 +19,16 @@ def bill_to_type():
 
     # ----- missing side data -----
     missing_side_data = bill_sponsors[bill_sponsors['person_side'] == 'nan']
+    missing_side_data
     missing_side_bill_ids = set(missing_side_data['bill_id'])
+    missing_side_bill_ids
     missing_side_data = bill_sponsors[bill_sponsors['bill_id'].isin(missing_side_bill_ids)]
+    missing_side_data
     missing_side_data = missing_side_data.pivot_table(index='bill_id',
         columns='person_side', values='person_id', aggfunc='nunique').reset_index()
-    missing_side_data_w_unclear_bill_type = missing_side_data[(missing_side_data['opposition']).isnull() | (missing_side_data['coalition']).isnull()]
+    missing_side_data
+    missing_side_data_w_unclear_bill_type = missing_side_data.isnull()
+    missing_side_data_w_unclear_bill_type
 
     missing_side_data_w_unclear_bill_type.to_excel(
         '../data/reports/missing_side_data_w_unclear_bill_type.xlsx',
@@ -36,10 +41,10 @@ def bill_to_type():
     # ----- logic definition -----
     bill_to_type = bill_sponsors[bill_sponsors['bill_id'].isin(unclear_bill_type_ids) == False]
     bill_to_type = bill_to_type.pivot_table(index='bill_id', columns='person_side', values='person_id', aggfunc='nunique').reset_index()
-    bill_to_type.drop(columns='nan', inplace=True)
+    if 'nan' in bill_to_type.columns:
+        bill_to_type.drop(columns='nan', inplace=True)
     bill_to_type['bill_type'] = 'bipartisan'
     bill_to_type['bill_type'][bill_to_type['opposition'].isnull() | bill_to_type['coalition'].isnull()] = 'single-sided'
-
     bill_to_type
 
 
